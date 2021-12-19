@@ -14,6 +14,6 @@ module.exports = {
     'linebreak-style': 0,
     'class-methods-use-this': 'off',
     camelcase: 'off',
-    'no-unused-vars': ['errors', { argsIgnorePattern: 'next' }],
+    'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
   },
 };

@@ -1,20 +1,14 @@
 const express = require('express');
 require('express-async-errors');
 require('dotenv/config');
+const cors = require('./app/middlewares/cors');
+const errorHandler = require('./app/middlewares/errorHandler');
 const routes = require('./routes');
-
 
 const app = express();
 app.use(express.json());
-app.use((request, response, next) => {
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001/');
-  next();
-})
+app.use(cors);
 app.use(routes);
-app.use((error, request, response, next) => {
-  console.log('entrou no middleware');
-  console.log(error);
-  return response.sendStatus(500);
-});
+app.use(errorHandler);
 
 app.listen(3000, () => console.log('🔥 Server started on port 3000'));
