@@ -34,11 +34,12 @@ class ContactsRepository {
     const newRows = rows.map((currentRow) => {
       const { category_id, category_name, ...removedProps } = currentRow;
       return ({
-        ...removedProps, category: {
-          id: currentRow.category_id,
-          name: currentRow.category_name,
-        }
-      })
+        ...removedProps,
+        category: {
+          id: category_id,
+          name: category_name,
+        },
+      });
     });
     return newRows;
   }
@@ -49,14 +50,8 @@ class ContactsRepository {
       FROM contacts
       LEFT JOIN categories ON contacts.category_id = categories.id
       WHERE contacts.email = $1`,
-      [email]);
-    const { category_id, category_name, ...newRows } = row;
-    return ({
-      ...newRows, category: {
-        id: row.category_id,
-        name: row.category_name,
-      }
-    })
+    [email]);
+    return row;
   }
 
   async findById(id) {
@@ -65,14 +60,15 @@ class ContactsRepository {
       FROM contacts
       LEFT JOIN categories ON contacts.category_id = categories.id
       WHERE contacts.id = $1`,
-      [id]);
+    [id]);
     const { category_id, category_name, ...removedProps } = row;
     return ({
-      ...removedProps, category: {
-        id: row.category_id,
-        name: row.category_name,
-      }
-    })
+      ...removedProps,
+      category: {
+        id: category_id,
+        name: category_name,
+      },
+    });
   }
 
   delete(id) {
