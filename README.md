@@ -12,7 +12,7 @@
   - Delete contact ✅
 - Cateories:
   - Create category ✅
-  - Update category
+  - Update category ✅
   - List categories ✅
   - Get category by id ✅
   - Delete category ✅
