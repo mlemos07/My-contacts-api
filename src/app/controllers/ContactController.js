@@ -13,7 +13,14 @@ class ContactController {
     if (!contact) {
       return response.status(404).json({ error: 'Contact not found.' });
     }
-    return response.json(contact);
+    const { category_id, category_name, ...removedProps } = contact;
+    return response.json({
+      ...removedProps,
+      category: {
+        id: category_id,
+        name: category_name,
+      },
+    });
   }
 
   async store(request, response) {
@@ -30,7 +37,7 @@ class ContactController {
     const contact = await contactsRepository.create({
       name, email, phone, category_id,
     });
-    return response.json(contact);
+    return response.status(201).json(contact);
   }
 
   async update(request, response) {

@@ -17,7 +17,16 @@ class CategoryController {
     }
     const category = await categoriesRepository.create(name);
 
-    return response.json(category);
+    return response.status(201).json(category);
+  }
+
+  async show(request, response) {
+    const { id } = request.params;
+    if (!id) {
+      return response.status(400).send({ error: 'Id is required' });
+    }
+    const row = await categoriesRepository.findById(id);
+    return response.json(row);
   }
 }
 
