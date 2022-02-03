@@ -14,7 +14,7 @@
   - Create category ✅
   - Update category
   - List categories ✅
-  - Get category by id
+  - Get category by id ✅
   - Delete category
 - User
   - Register user
