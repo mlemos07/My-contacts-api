@@ -61,14 +61,7 @@ class ContactsRepository {
       LEFT JOIN categories ON contacts.category_id = categories.id
       WHERE contacts.id = $1`,
     [id]);
-    const { category_id, category_name, ...removedProps } = row;
-    return ({
-      ...removedProps,
-      category: {
-        id: category_id,
-        name: category_name,
-      },
-    });
+    return row;
   }
 
   delete(id) {
