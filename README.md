@@ -15,7 +15,7 @@
   - Update category
   - List categories ✅
   - Get category by id ✅
-  - Delete category
+  - Delete category ✅
 - User
   - Register user
   - User Login
