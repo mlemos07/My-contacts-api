@@ -53,7 +53,6 @@ class ContactController {
     if (contactAlreadyExists && contactAlreadyExists.id !== id) {
       return response.status(400).json({ error: 'Contact already exists' });
     }
-    // Rename edit to update
     const contact = await contactsRepository.update(id, {
       name, email, phone, category_id,
     });
