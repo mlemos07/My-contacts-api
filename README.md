@@ -16,11 +16,6 @@
   - List categories ✅
   - Get category by id ✅
   - Delete category ✅
-- User
-  - Register user
-  - User Login
-  - User authentication
-  - Redefine password
 
 # 🎲 DATABASE
   - [Database](https://drive.google.com/file/d/1T5EV2j4JkLEmdEze_-ecFMgulmhC4zwG/view?usp=sharing)
