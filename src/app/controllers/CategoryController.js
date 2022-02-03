@@ -28,6 +28,15 @@ class CategoryController {
     const row = await categoriesRepository.findById(id);
     return response.json(row);
   }
+
+  async delete(request, response) {
+    const { id } = request.params;
+    if (!id) {
+      return response.status(400).send({ error: 'Id is required' });
+    }
+    await categoriesRepository.delete(id);
+    return response.sendStatus(204);
+  }
 }
 
 module.exports = new CategoryController();
