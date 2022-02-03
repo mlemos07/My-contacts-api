@@ -37,6 +37,21 @@ class CategoryController {
     await categoriesRepository.delete(id);
     return response.sendStatus(204);
   }
+
+  async update(request, response) {
+    const { id } = request.params;
+    const categoryExist = await categoriesRepository.findById(id);
+    if (!categoryExist) {
+      return response.status(404).json({ error: 'Category not found.' });
+    }
+    const { name } = request.body;
+    const categoryAlreadyExists = await categoriesRepository.findByName(name);
+    if (categoryAlreadyExists && categoryAlreadyExists.id !== id) {
+      return response.status(400).json({ error: 'Category already exists' });
+    }
+    const category = await categoriesRepository.update(id, { name });
+    return response.json(category);
+  }
 }
 
 module.exports = new CategoryController();
